@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      username: root
+      password: MongoDB2020!
+      database: poc_webflux
+      port: 27017
+      host: localhost
