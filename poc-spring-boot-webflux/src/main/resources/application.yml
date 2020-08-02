@@ -7,3 +7,10 @@ spring:
       database: poc_webflux
       port: 27017
       host: localhost
+  thymeleaf:
+    reactive:
+      chunked-mode-view-names:
+        -list-chunk
+      max-chunk-size:
+        512
+
