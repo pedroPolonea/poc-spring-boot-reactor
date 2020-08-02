@@ -6,7 +6,7 @@
 </head>
 <body>
 <H1 th:text="${title}"></H1>
-
+<a th:href="@{/form}"> Create + </a>
 <table border="1">
     <thead>
         <tr>
@@ -24,6 +24,6 @@
             <td th:text="${product.createAt}"></td>
         </tr>
     </tbody>
-
+</table>
 </body>
 </html>

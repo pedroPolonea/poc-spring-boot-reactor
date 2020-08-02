@@ -1,8 +1,11 @@
 package com.poc.sbwf.model.documents;
 
+import javax.validation.Valid;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Document
@@ -11,11 +14,16 @@ public class Product {
     @Id
     private String id;
 
+    @NotNull @NotEmpty
     private String name;
 
+    @NotNull @NotEmpty
     private Double price;
 
     private LocalDateTime createAt;
+
+
+
 
 
     public Product() {
@@ -56,5 +64,13 @@ public class Product {
 
     public void setCreateAt(LocalDateTime createAt) {
         this.createAt = createAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
