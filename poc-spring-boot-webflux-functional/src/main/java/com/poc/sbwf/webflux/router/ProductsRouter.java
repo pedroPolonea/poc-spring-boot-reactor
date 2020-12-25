@@ -23,11 +23,6 @@ public class ProductsRouter {
                 .andRoute(GET(PRODUCT_URL_BASE_ID), productsHandler::getById)
                 .andRoute(POST(PRODUCT_URL_BASE), productsHandler::save)
                 .andRoute(PUT(PRODUCT_URL_BASE_ID), productsHandler::update)
-                .andRoute(DELETE(PRODUCT_URL_BASE_ID), productsHandler::delete)
-                .filter((request, next) -> {
-                    log.info("M=ProductsRouter.{}, Url={}, pathVariables={}, queryParams={}",
-                            request.methodName(), request.uri(), request.pathVariables(), request.queryParams());
-                    return next.handle(request);
-                });
+                .andRoute(DELETE(PRODUCT_URL_BASE_ID), productsHandler::delete);
     }
 }

@@ -1,6 +1,7 @@
-package com.poc.sbwf.webflux.config;
+package com.poc.sbwf.webflux.config.filter;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
 import org.reactivestreams.Publisher;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.server.reactive.ServerHttpResponse;
@@ -11,18 +12,16 @@ import reactor.core.publisher.Mono;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.channels.Channels;
+import java.util.UUID;
 
 @Slf4j
-public class ResponseLoggingInterceptor extends ServerHttpResponseDecorator {
+public class LogResponseInterceptor extends ServerHttpResponseDecorator {
 
+    private UUID token;
 
-    private long startTime;
-
-
-    public ResponseLoggingInterceptor(ServerHttpResponse delegate, long startTime) {
+    public LogResponseInterceptor(ServerHttpResponse delegate, final UUID token) {
         super(delegate);
-        this.startTime = startTime;
-
+        this.token = token;
     }
 
     @Override
@@ -31,15 +30,11 @@ public class ResponseLoggingInterceptor extends ServerHttpResponseDecorator {
         return super.writeWith(buffer.doOnNext(dataBuffer -> {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
-                log.info("Resp");
+
                 Channels.newChannel(baos).write(dataBuffer.asByteBuffer().asReadOnlyBuffer());
-                /*String bodyRes = IOUtils.toString(baos.toByteArray(), "UTF-8");
-                if (logHeaders)
-                    log.info("Response({} ms): status={}, payload={}, audit={}", value("X-Response-Time", System.currentTimeMillis() - startTime),
-                            value("X-Response-Status", getStatusCode().value()), bodyRes, value("audit", true));
-                else
-                    log.info("Response({} ms): status={}, payload={}, audit={}", value("X-Response-Time", System.currentTimeMillis() - startTime),
-                            value("X-Response-Status", getStatusCode().value()), bodyRes, value("audit", true));*/
+                String bodyRes = IOUtils.toString(baos.toByteArray(), "UTF-8");
+
+                log.info("M=LogResponseInterceptor, token={}, bodyRes={}", token, bodyRes);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
