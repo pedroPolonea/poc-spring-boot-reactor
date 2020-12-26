@@ -20,7 +20,7 @@ public class Product {
     @NotNull @NotEmpty
     private String name;
 
-    @NotNull @NotEmpty
+    @NotNull
     private Double price;
 
     private LocalDateTime createAt;
