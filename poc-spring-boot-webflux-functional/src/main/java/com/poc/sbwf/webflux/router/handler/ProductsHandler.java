@@ -1,4 +1,4 @@
-package com.poc.sbwf.webflux.handler;
+package com.poc.sbwf.webflux.router.handler;
 
 import com.poc.sbwf.webflux.documents.Product;
 import com.poc.sbwf.webflux.service.ProductsService;

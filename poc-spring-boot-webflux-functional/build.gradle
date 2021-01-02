@@ -21,8 +21,6 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-webflux-ui', version: '1.5.2'
-	//implementation 'org.springdoc:springdoc-openapi-ui:1.5.2'
-	//implementation 'org.springdoc:springdoc-openapi-webflux-core:1.5.2'
 
 	compile group: 'commons-io', name: 'commons-io', version: '2.8.0'
 

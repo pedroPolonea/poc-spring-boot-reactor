@@ -7,3 +7,7 @@ spring:
       database: poc_webflux
       port: 27017
       host: localhost
+
+client:
+  base:
+    pokemon: https://pokeapi.co/api/v2/pokemon
