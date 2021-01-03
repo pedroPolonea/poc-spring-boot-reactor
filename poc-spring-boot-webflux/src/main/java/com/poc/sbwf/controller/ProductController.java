@@ -74,6 +74,7 @@ public class ProductController {
 
     @GetMapping("/form")
     public Mono<String> registerForm(Model model){
+        log.info("CM=ProductController.registerForm, IN=Begin");
         model.addAttribute("product", new Product());
         model.addAttribute("title", "Register of Product");
         return Mono.just("form");
@@ -82,7 +83,7 @@ public class ProductController {
     @PostMapping("/form")
     public Mono<String> save(Product product){
         log.info("CM=ProductController.save, IN=Begin, product={}", product);
-        productService.save(product);
+       productService.save(product);
 
         return Mono.just("redirect:/list");
     }

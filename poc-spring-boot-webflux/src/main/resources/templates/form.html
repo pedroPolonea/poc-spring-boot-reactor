@@ -9,7 +9,8 @@
 <a th:href="@{/list}"> Return to list </a>
 
     <div>
-        <form action="@{/form}" method="post" th:object="${product}">
+        <form th:action="@{/form}" method="post" th:object="${product}">
+            <input th:if="${product.id != null}" type="hidden" th:field="*{id}" />
             <div>
                 <label for="name">Name</label>
                 <div><input type="text" th:field="*{name}"/></div>

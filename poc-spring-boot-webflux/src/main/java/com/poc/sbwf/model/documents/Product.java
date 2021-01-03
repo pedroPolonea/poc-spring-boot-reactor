@@ -17,21 +17,19 @@ public class Product {
     @NotNull @NotEmpty
     private String name;
 
-    @NotNull @NotEmpty
+    @NotNull
     private Double price;
 
     private LocalDateTime createAt;
 
-
-
-
-
     public Product() {
     }
 
-    public Product(String name, Double price) {
+    public Product(String id, @NotNull @NotEmpty String name, @NotNull @NotEmpty Double price, LocalDateTime createAt) {
+        this.id = id;
         this.name = name;
         this.price = price;
+        this.createAt = createAt;
     }
 
     public String getId() {
@@ -71,6 +69,8 @@ public class Product {
         return "Product{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                ", createAt='" + createAt + '\'' +
                 '}';
     }
 }

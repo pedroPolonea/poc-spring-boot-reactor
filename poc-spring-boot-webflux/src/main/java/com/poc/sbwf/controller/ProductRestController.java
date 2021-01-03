@@ -58,7 +58,7 @@ public class ProductRestController {
             return productService.save(prod).map(p -> {
                         response.put("product", p);
                         return ResponseEntity
-                                .created(URI.create("/aṕi/products/".concat(p.getId())))
+                                .created(URI.create("/api/products/".concat(p.getId())))
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .body(response);
                     }
